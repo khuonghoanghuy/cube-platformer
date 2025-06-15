@@ -1,34 +1,41 @@
 package com.huy1234th.cubeplatformer;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
-
+    private Texture player;
+    private SpriteBatch spriteBatch;
+    
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
+        player = new Texture("player.png");
+        spriteBatch = new SpriteBatch();
     }
 
     @Override
     public void render() {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(image, 140, 210);
-        batch.end();
+        draw();
+    }
+
+    private void draw() {
+        ScreenUtils.clear(Color.BLACK);
+
+        // begin the sprite draw
+        spriteBatch.begin();
+
+        spriteBatch.draw(player, 1, 1);
+
+        // after that, end the sprite draw
+        spriteBatch.end();
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        image.dispose();
+        player.dispose();
     }
 }
